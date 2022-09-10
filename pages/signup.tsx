@@ -1,9 +1,10 @@
 import React from 'react';
 import Login from '../components/Authentication/login';
-export default function login() {
+import SignUp from '../components/Authentication/signup';
+export default function signUp() {
   return (
     <div>
-      <Login></Login>
+      <SignUp />
     </div>
   );
 }
