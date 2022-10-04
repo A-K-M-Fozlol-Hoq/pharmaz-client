@@ -1,5 +1,5 @@
-import React from "react";
-import { getAuth } from "firebase/auth";
+import React from 'react';
+import { getAuth } from 'firebase/auth';
 
 const auth = getAuth();
 const user = auth.currentUser;
@@ -13,8 +13,10 @@ export default function ReturnHello() {
       </div>
     );
   } else {
-    return <div className="p-2 rounded-md bg-orange-600 w-fit">
-    <p className="text-white">returnHello out</p>
-  </div>;
+    return (
+      <div className="p-2 rounded-md bg-orange-600 w-fit">
+        <p className="text-white">returnHello out</p>
+      </div>
+    );
   }
 }

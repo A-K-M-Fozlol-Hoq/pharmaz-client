@@ -10,7 +10,7 @@ import styles from '../styles/Home.module.css';
 const Home: NextPage = () => {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={styles.container}>
         <Head>
           <title>Pharmaz | Home </title>
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
           <Login></Login>
         </main>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

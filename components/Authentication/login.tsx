@@ -1,16 +1,16 @@
-import { Button } from "@mui/material";
-import Head from "next/head";
-import React, { useState } from "react";
-import { FaEye } from "react-icons/fa";
-import { handleLogin } from "./authManager";
-import GoogleAuthProvider from "./AuthProviders/google";
+import { Button } from '@mui/material';
+import Head from 'next/head';
+import React, { useState } from 'react';
+import { FaEye } from 'react-icons/fa';
+import { handleLogin } from './authManager';
+import GoogleAuthProvider from './AuthProviders/google';
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [revealPass, setRevealPass] = useState(false);
 
   const disableBtn = () => {
-    if(email && password){
+    if (email && password) {
       return false;
     } else {
       return true;
@@ -45,14 +45,18 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
               className="bg-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />{" "}
+            />{' '}
           </div>
-          <FaEye className="text-lg text-gray-500 hover:text-gray-700 mt-6 ml-2 cursor-pointer" onClick={() => setRevealPass(!revealPass)} />
+          <FaEye
+            className="text-lg text-gray-500 hover:text-gray-700 mt-6 ml-2 cursor-pointer"
+            onClick={() => setRevealPass(!revealPass)}
+          />
         </div>
 
         <button
           className="mt-3 py-2 px-5 bg-cyan-600 disabled:opacity-50 disabled:bg-gray-400 disabled:hover:bg-gray-400 text-white w-full rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          disabled={disableBtn()} onClick={() => handleLogin(email, password)}
+          disabled={disableBtn()}
+          onClick={() => handleLogin(email, password)}
         >
           Login
         </button>

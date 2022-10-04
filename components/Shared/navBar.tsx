@@ -1,5 +1,5 @@
-import React from "react";
-import ReturnHello from "../Utils/returnHello";
+import React from 'react';
+import ReturnHello from '../Utils/returnHello';
 
 const NavBar = () => {
   return (
@@ -26,10 +26,10 @@ const NavBar = () => {
               className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
               id="user-dropdown"
               style={{
-                position: "absolute",
-                inset: "0px auto auto 0px",
-                margin: "0px",
-                transform: "translate(0px, 10px)",
+                position: 'absolute',
+                inset: '0px auto auto 0px',
+                margin: '0px',
+                transform: 'translate(0px, 10px)',
               }}
               data-popper-reference-hidden=""
               data-popper-escaped=""
@@ -135,12 +135,9 @@ const NavBar = () => {
                 </a>
               </li>
               <li>
-                <p
-                  
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                <div className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                   <ReturnHello />
-                </p>
+                </div>
               </li>
             </ul>
           </div>
