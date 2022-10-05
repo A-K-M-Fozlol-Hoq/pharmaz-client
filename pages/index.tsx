@@ -1,13 +1,15 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Footer from '../components/Shared/footer';
-import NavBar from '../components/Shared/navBar';
-import ReturnHello from '../components/Utils/returnHello';
-import Login from '../pages/login';
-import styles from '../styles/Home.module.css';
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import Footer from "../components/Shared/footer";
+import NavBar from "../components/Shared/navBar";
+import ReturnHello from "../components/Utils/returnHello";
+import Login from "../pages/login";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const [testLogin, setTestLogin] = useState(false);
   return (
     <>
       {/* <NavBar /> */}
@@ -19,8 +21,11 @@ const Home: NextPage = () => {
         </Head>
 
         <main className={styles.main}>
-          <h1 className="bg-slate-600 text-center">Hello world | working</h1>
-          <Login></Login>
+          <div className="w-full flex bg-slate-300">
+            <h1 className="mx-auto">Hello world | working</h1>
+            <button className="mr-8 border border-gray-500 px-5 rounded-lg" onClick={() => setTestLogin(!testLogin)}>{testLogin ? `Logout` : `Login`}</button>
+          </div>
+          <NavBar></NavBar>
         </main>
       </div>
       {/* <Footer /> */}

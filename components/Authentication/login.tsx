@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import Head from 'next/head';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { handleLogin } from './authManager';
@@ -65,6 +66,17 @@ export default function Login() {
         <p className="text-gray-500 mx-auto">or</p>
       </div>
       <GoogleAuthProvider />
+      <div className="my-2">
+        <p className=" text-gray-500">
+          Don't have an account?{" "}
+          <Link
+            href={"/signup"}
+            className="block text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"
+          >
+             Signup
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

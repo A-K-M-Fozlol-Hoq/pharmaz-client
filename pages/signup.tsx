@@ -13,7 +13,7 @@ export default function signUp() {
             <SignUp></SignUp>
           </div>
           <div className="bg-[url('https://i.ibb.co/wKwh1TP/Wave.png')] bg-cover bg-no-repeat hidden sm:flex">
-            <h2 className="text-6xl font-extrabold text-gray-200 mx-auto p-12 self-center block">
+            <h2 className="text-6xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-gray-200 mx-auto p-12 self-center block">
               Sign Up, <br /> And Utilize The Full Potential Of Pharmaz
             </h2>
           </div>

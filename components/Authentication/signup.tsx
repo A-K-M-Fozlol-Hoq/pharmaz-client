@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { handleSignUp } from './authManager';
-import GoogleAuthProvider from './AuthProviders/google';
-import { FaEye } from 'react-icons/fa';
+import React, { useState } from "react";
+import { handleSignUp } from "./authManager";
+import GoogleAuthProvider from "./AuthProviders/google";
+import { FaEye } from "react-icons/fa";
+import Link from "next/link";
 
 export default function SignUp() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [tempPassword, setTempPassword] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [tempPassword, setTempPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [revealPass, setRevealPass] = useState(false);
   const [revealConfirmPass, setRevealConfirmPass] = useState(false);
 
@@ -21,7 +22,7 @@ export default function SignUp() {
 
   return (
     <div className="p-10 sm:p-5 w-96 mx-auto my-auto">
-      <div className="mb-3 text-gray-700">
+      <div className="mb-2 md:mb-3 text-gray-700">
         <h2 className="text-2xl">Create Your Pharmaz Account</h2>
         <br />
         <div className="mb-2">
@@ -53,12 +54,12 @@ export default function SignUp() {
               Password
             </label>
             <input
-              type={revealPass ? 'text' : 'password'}
+              type={revealPass ? "text" : "password"}
               required
               onChange={(e) => setTempPassword(e.target.value)}
               placeholder="password"
               className="bg-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />{' '}
+            />{" "}
           </div>
           <FaEye
             className="text-lg text-gray-500 hover:text-gray-700 mt-6 ml-2 cursor-pointer"
@@ -71,7 +72,7 @@ export default function SignUp() {
               Confirm Password
             </label>
             <input
-              type={revealConfirmPass ? 'text' : 'password'}
+              type={revealConfirmPass ? "text" : "password"}
               required
               onChange={(e) => setPassword(e.target.value)}
               // onBlur={(e) => checkPassword(e)}
@@ -92,10 +93,21 @@ export default function SignUp() {
           Create Account
         </button>
       </div>
-      <div className="flex">
-        <p className="text-gray-500 mx-auto">or</p>
+      <div className="hidden md:flex">
+        <p className=" text-gray-400 mx-auto">or</p>
       </div>
       <GoogleAuthProvider />
+      <div className="my-2">
+        <p className=" text-gray-500">
+          Already have an account?{" "}
+          <Link
+            href={"/login"}
+            className="block text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"
+          >
+            Login
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

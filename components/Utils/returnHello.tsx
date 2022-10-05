@@ -14,7 +14,7 @@ export default function ReturnHello() {
     );
   } else {
     return (
-      <div className="p-2 rounded-md bg-orange-600 w-fit">
+      <div className="p-1 rounded-full bg-orange-600 w-fit">
         <p className="text-white">returnHello out</p>
       </div>
     );

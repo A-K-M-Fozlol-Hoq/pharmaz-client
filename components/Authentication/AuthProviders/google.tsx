@@ -11,7 +11,7 @@ export default function GoogleAuthProvider() {
       >
         <span className="flex justify-center">
           <FaGoogle className="mt-1 mr-2" />
-          Continue with Google
+          <p className='hidden md:block'>Continue with Google</p>
         </span>
       </button>
     </div>
