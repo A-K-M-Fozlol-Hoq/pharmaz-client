@@ -1,6 +1,11 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { initializeApp } from 'firebase/app';
+import { Provider } from 'react-redux';
+import { store } from '../store';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import 'react-toastify/dist/ReactToastify.css';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,9 +16,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 const app = initializeApp(firebaseConfig);
-
+const persistor = persistStore(store);
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Component {...pageProps} />
+      </PersistGate>
+    </Provider>
+  );
 }
 
 export default MyApp;

@@ -32,8 +32,25 @@ export const handleLogin = async (email:string, password:string) => {
     })
 }
 export const handleSignUp = async (name:string, email:string, password:string) => {
-  // step 1: Create a new user
+  try{
+    // step 1: Create a new user
   const result = await createUserWithEmailAndPassword(auth, email, password);
-  console.log(result);
   // step 2: Create the user profile in the database
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}user/createUser`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `tokenSecret ${process.env.NEXT_PUBLIC_USER_TOKEN_KEY}`
+    },
+    body: JSON.stringify({ name: name, userType:'consumer', email: email})
+  });
+  const data = await res.json();
+  console.log(data,'data')
+  return data;
+  // process.env.NEXT_PUBLIC_API
+  }catch(err) {
+    alert("SOmething went wrong!")
+  }
+  
+
 }
