@@ -1,5 +1,5 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "firebase/auth";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -35,8 +35,10 @@ export const handleSignUp = async (name:string, email:string, password:string) =
   try{
     // step 1: Create a new user
     const result = await createUserWithEmailAndPassword(auth, email, password);
+    console.log(result);
     // step 2: Create the user profile in the database
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API}user/createUser`, {
+    if(result){
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API}user/createUser`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -46,7 +48,11 @@ export const handleSignUp = async (name:string, email:string, password:string) =
     });
     const data = await res.json();
     return data;
+    }
     }catch(err) {
-      alert("SOmething went wrong!")
+      toast('Maybe user already exists! Please try with different email.', {
+        autoClose: 2000,
+        type: 'error',
+      });
     }
 }
