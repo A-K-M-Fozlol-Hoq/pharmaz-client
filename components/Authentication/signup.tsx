@@ -99,18 +99,7 @@ export default function SignUp() {
     if (isNameValid && isEmailValid && isPasswordValid) {
       const result = await handleSignUp(name, email, password);
       console.log(result, 'result');
-      // console.log();
     }
-    // validate and give error
-    //call handleSignUp if user provie right data
-    // const result = await handleSignUp(name, email, password);
-    // toast('Your purchase has been cancelled, we hope to see you again soon!', {
-    //   autoClose: 2000,
-    //   type: 'success',
-    //   // type: 'warning',
-    //   // type: 'error',
-    //   // type: 'info',
-    // });
     console.log('ok');
   };
 
