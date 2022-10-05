@@ -1,0 +1,8 @@
+ to notify something ot user
+ toast('message', {
+      autoClose: 2000,
+      type: 'success',
+      // type: 'warning',
+      // type: 'error',
+      // type: 'info',
+    });
