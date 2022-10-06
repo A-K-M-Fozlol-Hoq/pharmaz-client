@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
 import { FaEye } from 'react-icons/fa';
+import { ToastContainer } from 'react-toastify';
 import GoogleAuthProvider from '../AuthProviders/google';
 
 export interface IProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   setRevealPass: React.Dispatch<React.SetStateAction<boolean>>;
-  handleLogin: Function;
+  ValidateAndHandleLogin: Function;
   email: string;
   password: string;
   // userType: string;
@@ -22,7 +23,7 @@ const LoginUI = (props: IProps) => {
     email,
     password,
     revealPass,
-    handleLogin,
+    ValidateAndHandleLogin,
   } = props;
 
   return (
@@ -64,7 +65,7 @@ const LoginUI = (props: IProps) => {
         <button
           className="mt-3 py-2 px-5 bg-cyan-600 disabled:opacity-50 disabled:bg-gray-400 disabled:hover:bg-gray-400 text-white w-full rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
           // disabled={disableBtn()}
-          onClick={() => handleLogin(email, password)}
+          onClick={() => ValidateAndHandleLogin(email, password)}
         >
           Login
         </button>
@@ -84,6 +85,8 @@ const LoginUI = (props: IProps) => {
           </Link>
         </p>
       </div>
+      {/* toast container */}
+      <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
   );
 };

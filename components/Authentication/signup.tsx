@@ -22,7 +22,7 @@ export default function SignUp() {
     }
   };
 
-  const isEmailValidFunc = (emial: String) => {
+  const isEmailValidFunc = (email: string) => {
     const isValid =
       /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i.test(email);
     if (isValid) {
