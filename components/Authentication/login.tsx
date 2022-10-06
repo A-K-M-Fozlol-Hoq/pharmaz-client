@@ -24,9 +24,12 @@ export default function Login() {
         <h2 className="text-2xl">Welcome Again!</h2>
         <br />
         <div className="mb-2">
+          <div className="flex items-end">
           <label className="block mb-2 text-md font-medium dark:text-gray-300">
             Email
           </label>
+          <p className="block mb-2 text-md font-medium text-sky-600">user</p>
+          </div>
           <input
             type="text"
             required

@@ -12,7 +12,6 @@ const Home: NextPage = () => {
   const [testLogin, setTestLogin] = useState(false);
   return (
     <>
-      {/* <NavBar /> */}
       <div className={styles.container}>
         <Head>
           <title>Pharmaz | Home </title>
@@ -20,12 +19,23 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className={styles.main}>
+        <NavBar></NavBar>
+        <main>
           <div className="w-full flex bg-slate-300">
             <h1 className="mx-auto">Hello world | working</h1>
-            <button className="mr-8 border border-gray-500 px-5 rounded-lg" onClick={() => setTestLogin(!testLogin)}>{testLogin ? `Logout` : `Login`}</button>
+            <button
+              className="mr-8 border border-gray-500 px-5 rounded-lg"
+              onClick={() => setTestLogin(!testLogin)}
+            >
+              {testLogin ? `Logout` : `Login`}
+            </button>
           </div>
-          <NavBar></NavBar>
+          <div className="greetings w-11/12 h-44 my-2 mx-auto border border-2 border-gray-500 rounded-xl text-center">
+            <h2 className="text-2xl font-extrabold">Search medicine within your territory, or in your region</h2>
+          </div>
+          <div className="search-area w-11/12 h-96 mx-auto border border-2 border-gray-500 rounded-xl">
+          <input className="placeholder:italic placeholder:text-slate-400 block bg-white mx-auto my-2 border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search"/>
+          </div>
         </main>
       </div>
       {/* <Footer /> */}
