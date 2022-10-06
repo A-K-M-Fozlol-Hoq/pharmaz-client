@@ -63,6 +63,5 @@ export default function Login() {
       revealPass={revealPass}
       ValidateAndHandleLogin={ValidateAndHandleLogin}
     ></LoginUI>
-    
   );
 }
