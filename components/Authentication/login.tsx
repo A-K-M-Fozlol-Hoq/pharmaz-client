@@ -1,13 +1,7 @@
-import { Button } from '@mui/material';
-import Head from 'next/head';
-import Link from 'next/link';
 import React, { useState } from 'react';
-import { FaEye } from 'react-icons/fa';
 import { handleLogin } from './authManager';
-import GoogleAuthProvider from './AuthProviders/google';
 import { ToastContainer, toast } from 'react-toastify';
 import LoginUI from './UI/login';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { login, selectIsLoggedIn } from '../../store/userSlice';
 
@@ -44,10 +38,6 @@ export default function Login() {
     const isPasswordValid = password.length > 5 && !password.includes(' ');
     if (isEmailValid && isPasswordValid) {
       await handleLogin(email, password, dispatch, login);
-
-      // await handleLogin(email, password).then((result) => {
-      //   console.log(result, 'result from');
-      // });
     } else {
       toast('Please provide valid credential.', {
         autoClose: 2000,

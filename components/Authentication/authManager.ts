@@ -38,8 +38,6 @@ export const handleLogin = async (email:string, password:string, dispatch:any, l
             body: JSON.stringify({email: email})
           });
           const data = await res.json();
-          console.log(data.user , data.token,'dta')
-  
           const userData = {
             name: data.user.name,
             email: data.user.email,
