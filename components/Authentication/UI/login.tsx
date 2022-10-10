@@ -29,7 +29,10 @@ const LoginUI = (props: IProps) => {
   return (
     <div className="p-5 w-96 mx-auto my-auto">
       <div className="mb-3 text-gray-700">
-        <h2 className="text-2xl">Welcome Again!</h2>
+        <div className="flex">
+        <h2 className="flex-1 text-2xl">Welcome Again!</h2>
+        
+        </div>
         <br />
         <div className="mb-2">
           <label className="block mb-2 text-md font-medium dark:text-gray-300">

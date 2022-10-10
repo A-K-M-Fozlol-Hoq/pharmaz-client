@@ -1,165 +1,157 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaRegUser } from "react-icons/fa";
+import { HiMenu } from "react-icons/hi";
+import { RiHome2Line } from "react-icons/ri";
+import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
+import { SiCountingworkspro } from "react-icons/si";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
+import { MdNotificationsNone } from "react-icons/md";
+import { BsDot } from "react-icons/bs";
+import { MdNightlight } from "react-icons/md";
+import { MdOutlineLightMode } from "react-icons/md";
 import ReturnHello from "../Utils/returnHello";
 
 const NavBar = () => {
-  const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
-  const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(true);
-    }
-  };
-
-  const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(false);
-    }
-  };
+  const [userDropdown, setUserDropdown] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <>
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2 sm:py-1 rounded dark:bg-gray-900">
-          <div className="container flex flex-wrap justify-between items-center mx-auto">
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              <Link href={"http://localhost:3000/"}>Pharmaz</Link>
-            </span>
-            <div className="flex items-center md:order-2">
-              <button
-                type="button"
-                className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-              >
-                <span className="sr-only">Open user menu</span>
-                <FaRegUser className="text-lg" />
-              </button>
-              <div
-                className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                id="user-dropdown"
-                style={{
-                  position: "absolute",
-                  inset: "0px auto auto 0px",
-                  margin: "0px",
-                  transform: "translate(0px, 10px)",
-                }}
-                data-popper-reference-hidden=""
-                data-popper-escaped=""
-                data-popper-placement="bottom"
-              >
-                <div className="py-3 px-4">
-                  <span className="block text-sm text-gray-900 dark:text-white">
-                    Bonnie Green
-                  </span>
-                  <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
-                    name@flowbite.com
-                  </span>
-                </div>
-                <ul className="py-1" aria-labelledby="user-menu-button">
-                  <li>
-                    <Link href={"#"}>
-                      <p className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                        Dashboard
-                      </p>
-                    </Link>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Earnings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                    >
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <button
-                data-collapse-toggle="mobile-menu-2"
-                type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="mobile-menu-2"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-              </button>
-            </div>
-            <div
-              className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-              id="mobile-menu-2"
+      <nav className={`bg-white border-gray-200 flex px-2 sm:px-4 py-1 sm:py-2 backdrop-blur-md ${darkMode ? 'bg-white/60' : 'dark:bg-white/40'} fixed top-0 right-0 left-0`}>
+        <div className="first flex px-1">
+          <span className="self-center antialiased text-xl font-semibold whitespace-nowrap dark:text-white cursor-pointer">
+            <Link href={"http://localhost:3000/"}>
+              <span>
+                Pharm<span className="text-green-700">a</span>
+                <span className="text-blue-600">z</span>
+              </span>
+            </Link>
+          </span>
+        </div>
+        <div className="second flex-1 flex items-center justify-center mx-1 px-1">
+          <ul
+            className="flex items-center text-xl"
+            aria-labelledby="user-menu-button"
+          >
+            <li>
+              <Link href={"http://localhost:3000/"}>
+                <button className="block py-2 px-4 text-sm md:font-extrabold antialiased text-gray-700 hover:rounded-lg hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white focus:text-blue-600 cursor-pointer">
+                  <RiHome2Line className="text-xl block focus:ring-2 focus:ring-blue-500 md:hidden"></RiHome2Line>
+                  <span className="hidden md:block">Home</span>
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link href={"/about"}>
+                <button className="block py-2 px-4 text-sm md:font-extrabold antialiased text-gray-700 hover:rounded-lg hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white focus:text-blue-600 cursor-pointer">
+                  <GiPerspectiveDiceSixFacesRandom className="text-xl block focus:ring-2 focus:ring-blue-500 md:hidden"></GiPerspectiveDiceSixFacesRandom>
+                  <span className="hidden md:block">About</span>
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link href={"http://localhost:3000/"}>
+                <button className="block py-2 px-4 text-sm md:font-extrabold antialiased text-gray-700 hover:rounded-lg hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white focus:text-blue-600 cursor-pointer">
+                  <SiCountingworkspro className="text-xl block focus:ring-2 focus:ring-blue-500 md:hidden"></SiCountingworkspro>
+                  <span className="hidden md:block">Services</span>
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link href={"http://localhost:3000/"}>
+                <button className="block py-2 px-4 text-sm md:font-extrabold antialiased text-gray-700 hover:rounded-lg hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white focus:text-blue-600 cursor-pointer">
+                  <MdOutlineConnectWithoutContact className="text-xl justify-self-center block focus:ring-2 focus:ring-blue-500 md:hidden"></MdOutlineConnectWithoutContact>
+                  <span className="hidden md:block">Contact</span>
+                </button>
+              </Link>
+            </li>
+            <li>
+              <MdNotificationsNone className="text-2xl text-gray-700 cursor-pointer transition ease-in-out delay-100 hover:scale-100 hover:text-yellow-500 focus:text-blue-600 duration-200"></MdNotificationsNone>
+            </li>
+          </ul>
+        </div>
+        <div className="third flex items-center justify-center mx-1 px-1">
+          <div className="flex items-center justify-center">
+            {darkMode ? (
+              <MdOutlineLightMode
+                className="text-xl text-yellow-500 mx-2 hover:rounded-2xl hover:text-yellow-400 cursor-pointer"
+                onClick={() => setDarkMode(!darkMode)}
+              ></MdOutlineLightMode>
+            ) : (
+              <MdNightlight
+                className="text-xl text-gray-800 mx-2 hover:rounded-2xl hover:text-sky-900 cursor-pointer"
+                onClick={() => setDarkMode(!darkMode)}
+              ></MdNightlight>
+            )}
+            <button
+              className={`flex items-center justify-center cursor-pointer ${userDropdown ? 'bg-slate-200' : 'bg-gray-300'} hover:bg-slate-300 rounded-full`} onBlur={() => setUserDropdown(false)}
+              onClick={() => setUserDropdown(!userDropdown)}
             >
-              <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <Link href={"http://localhost:3000/"}>
-                    <p className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
-                      Home
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"#"}>
-                    <p className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
-                      Dashboard
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"#"}>
-                    <p className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
-                      Profile
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"/about"}>
-                    <p className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
-                      About
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"#"}>
-                    <p className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
-                      Contact
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <div className="block py-2 pr-4 pl-3 mb-1 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    <ReturnHello />
-                  </div>
-                </li>
-              </ul>
-            </div>
+              <Image
+                src={
+                  "https://i.ibb.co/728WR8n/73-730482-existing-user-default-avatar.jpg"
+                }
+                alt="userImage"
+                className="rounded-full"
+                height={28}
+                width={28}
+              />
+              <BsDot className="text-3xl ml-0 text-green-500"></BsDot>
+            </button>
           </div>
-        </nav>
+        </div>
+      </nav>
+      <div
+        className={`${
+          userDropdown ? "visible" : "hidden"
+        } w-40 border backdrop-blur-md bg-white/80 dark:bg-white/60 shadow-md rounded-xl fixed top-14 right-3 z-40`}
+      >
+        <div className="py-3 px-4">
+          <span className="block text-sm text-gray-900 dark:text-white">
+            UserName
+          </span>
+          <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
+            email@gmail.com
+          </span>
+        </div>
+        <ul className="py-1" aria-labelledby="user-menu-button">
+          <li>
+            <a
+              href="#"
+              className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Profile
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Settings
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+            >
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

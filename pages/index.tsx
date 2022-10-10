@@ -7,9 +7,15 @@ import NavBar from "../components/Shared/navBar";
 import ReturnHello from "../components/Utils/returnHello";
 import Login from "../pages/login";
 import styles from "../styles/Home.module.css";
+import { CgClose } from "react-icons/cg";
+import { GiRadarSweep } from "react-icons/gi";
+import { IoIosArrowDropupCircle } from "react-icons/io";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const Home: NextPage = () => {
   const [testLogin, setTestLogin] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(true);
+
   return (
     <>
       <div className={styles.container}>
@@ -20,21 +26,51 @@ const Home: NextPage = () => {
         </Head>
 
         <NavBar></NavBar>
-        <main>
-          <div className="w-full flex bg-slate-300">
-            <h1 className="mx-auto">Hello world | working</h1>
-            <button
-              className="mr-8 border border-gray-500 px-5 rounded-lg"
-              onClick={() => setTestLogin(!testLogin)}
-            >
-              {testLogin ? `Logout` : `Login`}
-            </button>
-          </div>
-          <div className="greetings w-11/12 h-44 my-2 mx-auto border border-2 border-gray-500 rounded-xl text-center">
-            <h2 className="text-2xl font-extrabold">Search medicine within your territory, or in your region</h2>
-          </div>
-          <div className="search-area w-11/12 h-96 mx-auto border border-2 border-gray-500 rounded-xl">
-          <input className="placeholder:italic placeholder:text-slate-400 block bg-white mx-auto my-2 border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search"/>
+        <div className="w-full flex mt-14 bg-slate-300">
+          <h1 className="mx-auto">Hello world | working</h1>
+          <button
+            className="mr-8 border border-gray-500 px-4 rounded-lg"
+            onClick={() => setTestLogin(!testLogin)}
+          >
+            {testLogin ? `Logout` : `Login`}
+          </button>
+        </div>
+        <div
+          className={`greetings ${
+            showGreeting ? `visible` : `hidden`
+          } bg-[#C6EBC5] w-full sm:w-11/12 py-6 sm:py-16 px-6 sm:px-16 mx-auto rounded-none sm:rounded-xl text-start relative my-5`}
+        >
+          <CgClose
+            className="text-xl text-gray-600 hover:text-orange-400 absolute top-2 right-2"
+            onClick={() => setShowGreeting(false)}
+          ></CgClose>
+          <h2 className="text-3xl sm:text-5xl font-extrabold">
+            Find nearby pharmacies or order medicines
+          </h2>
+          <h2 className="text-3xl sm:text-5xl font-extrabold">
+            For you and your near ones.
+          </h2>
+        </div>
+        <main className="w-full sm:w-11/12 bg-slate-200 h-screen mx-auto rounded-xl relative">
+          <div className="search-card w-full sm:w-5/12 md:w-1/4 h-fit p-3 border backdrop-blur-md bg-white/60 border-gray-500 rounded-2xl absolute bottom-0 md:right-2 md:bottom-2">
+            <input
+              className={`placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm`}
+              placeholder="Search medicine..."
+              type="text"
+              name="search"
+            />
+            <div className="distance flex items-center justify-center">
+              <button className="w-14 flex items-center justify-center bg-slate-300 rounded-full p-8 m-3">
+                500m
+              </button>
+              <button className="w-14 flex items-center justify-center bg-slate-300 rounded-full p-8 m-3">
+                1km
+              </button>
+              <button className="w-14 flex items-center justify-center bg-slate-300 rounded-full p-8 m-3">
+                <GiRadarSweep></GiRadarSweep>
+              </button>
+            </div>
+
           </div>
         </main>
       </div>

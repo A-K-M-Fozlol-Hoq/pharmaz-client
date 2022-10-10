@@ -9,13 +9,14 @@ import SignUpUI from './UI/signup';
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('consumer');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [revealPass, setRevealPass] = useState(false);
   const [revealConfirmPass, setRevealConfirmPass] = useState(false);
 
   const disableBtn = () => {
-    if (name && email && password === confirmPassword) {
+    if (name && role && email && password === confirmPassword) {
       return false;
     } else {
       return true;
@@ -106,13 +107,16 @@ export default function SignUp() {
   return (
     <SignUpUI
       setName={setName}
+      setRole={setRole}
       setEmail={setEmail}
       setPassword={setPassword}
       setRevealPass={setRevealPass}
       setConfirmPassword={setConfirmPassword}
       setRevealConfirmPass={setRevealConfirmPass}
       validateAndHandleSignUp={validateAndHandleSignUp}
+      disableBtn={disableBtn}
       name={name}
+      role={role}
       email={email}
       password={password}
       revealPass={revealPass}

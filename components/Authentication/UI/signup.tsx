@@ -1,18 +1,22 @@
-import Link from 'next/link';
-import React from 'react';
-import { FaEye } from 'react-icons/fa';
-import { ToastContainer } from 'react-toastify';
-import GoogleAuthProvider from '../AuthProviders/google';
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import Link from "next/link";
+import React from "react";
+import { FaEye } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
+import GoogleAuthProvider from "../AuthProviders/google";
 
 export interface IProps {
   setName: React.Dispatch<React.SetStateAction<string>>;
+  setRole: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   setRevealPass: React.Dispatch<React.SetStateAction<boolean>>;
   setConfirmPassword: React.Dispatch<React.SetStateAction<string>>;
   setRevealConfirmPass: React.Dispatch<React.SetStateAction<boolean>>;
+  disableBtn:Function;
   validateAndHandleSignUp: Function;
   name: string;
+  role: string;
   email: string;
   password: string;
   // userType: string;
@@ -23,6 +27,7 @@ export interface IProps {
 const SignUpUI = (props: IProps) => {
   const {
     setName,
+    setRole,
     setEmail,
     setPassword,
     setRevealPass,
@@ -30,15 +35,33 @@ const SignUpUI = (props: IProps) => {
     setRevealConfirmPass,
     validateAndHandleSignUp,
     name,
+    role,
     email,
     password,
     revealPass,
     revealConfirmPass,
+    disableBtn
   } = props;
+  console.log(role);
   return (
     <div className="p-10 sm:p-5 w-96 mx-auto my-auto">
       <div className="mb-2 md:mb-3 text-gray-700">
-        <h2 className="text-2xl">Create Your Pharmaz Account</h2>
+        <h2 className="text-2xl">Create Your Account</h2>
+        <div className="flex items-start justify-start">
+          <FormControl sx={{ mt: 1, minWidth: 60 }} size="small">
+            <InputLabel id="demo-select-small">as</InputLabel>
+            <Select
+              labelId="demo-select-small"
+              id="demo-select-small"
+              value={role}
+              label="as"
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <MenuItem value={"consumer"}>Consumer</MenuItem>
+              <MenuItem value={"proprietor"}>Proprietor</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <br />
         <div className="mb-2">
           <label className="block mb-2 text-md font-medium dark:text-gray-300">
@@ -69,12 +92,12 @@ const SignUpUI = (props: IProps) => {
               Password
             </label>
             <input
-              type={revealPass ? 'text' : 'password'}
+              type={revealPass ? "text" : "password"}
               required
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
               className="bg-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />{' '}
+            />{" "}
           </div>
           <FaEye
             className="text-lg text-gray-500 hover:text-gray-700 mt-6 ml-2 cursor-pointer"
@@ -87,7 +110,7 @@ const SignUpUI = (props: IProps) => {
               Confirm Password
             </label>
             <input
-              type={revealConfirmPass ? 'text' : 'password'}
+              type={revealConfirmPass ? "text" : "password"}
               required
               onChange={(e) => setConfirmPassword(e.target.value)}
               // onBlur={(e) => checkPassword(e)}
@@ -102,7 +125,7 @@ const SignUpUI = (props: IProps) => {
         </div>
         <button
           className="mt-3 py-2 px-5 bg-cyan-600 disabled:opacity-50 disabled:bg-gray-400 text-white w-full rounded-md shadow-md hover:bg-blue-700 disabled:hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          // disabled={disableBtn()}
+          disabled={disableBtn()}
           onClick={() => validateAndHandleSignUp(name, email, password)}
         >
           Create Account
@@ -116,9 +139,9 @@ const SignUpUI = (props: IProps) => {
       <GoogleAuthProvider />
       <div className="my-2">
         <p className=" text-gray-500">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link
-            href={'/login'}
+            href={"/login"}
             className="block text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"
           >
             Login
