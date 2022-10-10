@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { handleSignUp } from './authManager';
-import GoogleAuthProvider from './AuthProviders/google';
-import { FaEye } from 'react-icons/fa';
-import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toastify';
 import SignUpUI from './UI/signup';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectIsLoggedIn } from '../../store/userSlice';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -14,6 +13,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [revealPass, setRevealPass] = useState(false);
   const [revealConfirmPass, setRevealConfirmPass] = useState(false);
+  const dispatch = useDispatch();
 
   const disableBtn = () => {
     if (name && role && email && password === confirmPassword) {
@@ -100,10 +100,29 @@ export default function SignUp() {
 
     if (isNameValid && isEmailValid && isPasswordValid) {
       const result = await handleSignUp(name, email, password);
-      console.log(result, 'result');
+      if (result.isSuccess) {
+        const userData = {
+          name: result.result.name,
+          email: result.result.email,
+          userType: result.result.userType,
+          isLoggedIn: true,
+        };
+        localStorage.setItem('token', result.token);
+        dispatch(login({ userData }));
+        toast('Signed in successfully.', {
+          autoClose: 2000,
+          type: 'success',
+        });
+      } else {
+        localStorage.clear();
+        toast('Something went wrong. Please try again.', {
+          autoClose: 2000,
+          type: 'error',
+        });
+      }
     }
-    console.log('ok');
   };
+
   return (
     <SignUpUI
       setName={setName}
