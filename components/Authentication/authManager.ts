@@ -19,7 +19,7 @@ export const handleGoogleSignIn = async () => {
     });
 };
 
-export const handleLogin = async (email:string, password:string) => {
+export const handleLogin = async (email:string, password:string, dispatch:any, login:any) => {
   try{
      // step 1: match email and password and get token from firebase
   await signInWithEmailAndPassword(auth, email, password)
@@ -28,17 +28,36 @@ export const handleLogin = async (email:string, password:string) => {
       // console.log(res.user.emailVerified)
       // step 2: Get the user profile in the database
       if(res?.user?.accessToken){
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API}user/getUser`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              Authorization: `tokenSecret ${process.env.NEXT_PUBLIC_USER_TOKEN_KEY}`
-          },
-          body: JSON.stringify({email: email})
+        try{
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API}user/getUser`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `tokenSecret ${process.env.NEXT_PUBLIC_USER_TOKEN_KEY}`
+            },
+            body: JSON.stringify({email: email})
+          });
+          const data = await res.json();
+          const userData = {
+            name: data.user.name,
+            email: data.user.email,
+            userType: data.user.userType,
+            isLoggedIn: true,
+          };
+          localStorage.setItem('token', data.token);
+          dispatch(login({ userData }));
+          toast('Logged in successfully.', {
+            autoClose: 2000,
+            type: 'success',
+          });
+        }
+       catch(error){
+        localStorage.clear();
+        toast('Something went wrong. Please try again.', {
+          autoClose: 2000,
+          type: 'error',
         });
-        const data = await res.json();
-        console.log(data,'dta')
-        return data;
+       }
       }
     })
     .catch((err) => {
