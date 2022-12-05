@@ -14,13 +14,17 @@ import { MdNightlight } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import ReturnHello from "../Utils/returnHello";
 
-const NavBar = () => {
+const NavBar = (props: any) => {
   const [userDropdown, setUserDropdown] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
   return (
     <>
-      <nav className={`bg-white border-gray-200 flex px-2 sm:px-4 py-1 sm:py-2 backdrop-blur-md ${darkMode ? 'bg-white/60' : 'dark:bg-white/40'} fixed top-0 right-0 left-0`}>
+      <nav
+        className={`bg-white border-gray-200 flex px-2 sm:px-4 py-1 sm:py-2 backdrop-blur-md ${
+          darkMode ? "bg-white/60" : "dark:bg-white/40"
+        }`}
+      >
         <div className="first flex px-1">
           <span className="self-center antialiased text-xl font-semibold whitespace-nowrap dark:text-white cursor-pointer">
             <Link href={"http://localhost:3000/"}>
@@ -73,7 +77,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="third flex items-center justify-center mx-1 px-1">
+        <div className={`third flex items-center justify-center mx-1 px-1`}>
           <div className="flex items-center justify-center">
             {darkMode ? (
               <MdOutlineLightMode
@@ -87,7 +91,12 @@ const NavBar = () => {
               ></MdNightlight>
             )}
             <button
-              className={`flex items-center justify-center cursor-pointer ${userDropdown ? 'bg-slate-200' : 'bg-gray-300'} hover:bg-slate-300 rounded-full`} onBlur={() => setUserDropdown(false)}
+              className={`${
+                props.testLogin ? `flex` : `hidden`
+              } items-center justify-center cursor-pointer ${
+                userDropdown ? "bg-slate-200" : "bg-gray-300"
+              } hover:bg-slate-300 rounded-full`}
+              onBlur={() => setUserDropdown(false)}
               onClick={() => setUserDropdown(!userDropdown)}
             >
               <Image
@@ -101,6 +110,13 @@ const NavBar = () => {
               />
               <BsDot className="text-3xl ml-0 text-green-500"></BsDot>
             </button>
+            <div
+              className={`${
+                props.testLogin ? `hidden` : `flex`
+              } bg-blue-500 text-white px-2 sm:px-5 py-1 rounded-md`}
+            >
+              <Link href={"/login"}>Login</Link>
+            </div>
           </div>
         </div>
       </nav>

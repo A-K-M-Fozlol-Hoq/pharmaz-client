@@ -25,15 +25,15 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <NavBar></NavBar>
+        <NavBar testLogin={testLogin}></NavBar>
         <div className="w-full flex mt-14 bg-slate-300">
           <h1 className="mx-auto">Hello world | working</h1>
-          <button
+          {/* <button
             className="mr-8 border border-gray-500 px-4 rounded-lg"
             onClick={() => setTestLogin(!testLogin)}
           >
             {testLogin ? `Logout` : `Login`}
-          </button>
+          </button> */}
         </div>
         <div
           className={`greetings ${
